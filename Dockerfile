@@ -1,0 +1,14 @@
+FROM alpine:latest
+
+ENV TERRAFORM_VERSION 0.10.3
+
+RUN apk add --update wget ca-certificates unzip git bash && \
+    wget -q -O /terraform.zip "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" && \
+    unzip /terraform.zip -d /bin && \
+    apk del --purge wget ca-certificates unzip && \
+    rm -rf /var/cache/apk/* /terraform.zip
+
+VOLUME ["/data"]
+WORKDIR /data
+
+ENTRYPOINT ["/bin/bash"]
