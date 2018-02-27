@@ -7,7 +7,7 @@ docker build -t mthomas/terraform:1.0 .
 
 ## Run the Docker image
 ```bash
-docker run -it -v ${PWD}/tf:/app -w /app/  mthomas/terraform:1.0 
+docker run -it -v ${HOME}/.ssh:/.ssh  -v ${PWD}/tf:/app -w /app/  mthomas/terraform:1.0
 ```
 
 ## Useful commands
